@@ -43,5 +43,65 @@ import edu.duke.*;
 import java.io.File;
 
 public class Part3 {
-
+    public boolean twoOccurences(String stringa, String stringb){
+        int subStringIndex = stringb.indexOf(stringa);
+        int count = 0;
+        while(subStringIndex >= 0) {
+            count++;
+            subStringIndex = stringb.indexOf(stringa, subStringIndex + 1); 
+        }        
+        return count >= 2;
+    }
+    
+    public String lastPart(String stringa, String stringb){
+        int subStringIndex = stringb.indexOf(stringa);
+        String remainderString = stringb;
+        if(subStringIndex >= 0){
+            remainderString = stringb.substring(subStringIndex + stringa.length());
+        }
+        return remainderString;
+    }
+    
+    public void testTwoOccurences(){
+        String stringa = "by";
+        String stringb = "A story by Abby Long";
+        System.out.println("find '" + stringa + "' in '" + stringb + "'");
+        boolean hasTwoOccurences = twoOccurences(stringa, stringb);
+        System.out.println(hasTwoOccurences);
+        
+        stringa = "story";
+        stringb = "A story by Abby Long";
+        System.out.println("find '" + stringa + "' in '" + stringb + "'");
+        hasTwoOccurences = twoOccurences(stringa, stringb);
+        System.out.println(hasTwoOccurences);
+        
+        stringa = "fun";
+        stringb = "A story by Abby Long";
+        System.out.println("find '" + stringa + "' in '" + stringb + "'");
+        hasTwoOccurences = twoOccurences(stringa, stringb);
+        System.out.println(hasTwoOccurences);
+    }
+    
+    public void testLastPart() {
+        String stringa = "an";
+        String stringb = "banana";
+        System.out.println("Initial full string " + stringb);
+        System.out.println("stringa is " + stringa);
+        String remainderString = lastPart(stringa, stringb);
+        System.out.println("Remainder String " + remainderString);
+        
+        stringa = "zoo";
+        stringb = "forest";
+        System.out.println("Initial full string " + stringb);
+        System.out.println("stringa is " + stringa);
+        remainderString = lastPart(stringa, stringb);
+        System.out.println("Remainder String " + remainderString);
+        
+        stringa = "an";
+        stringb = "A banana grows on a tree";
+        System.out.println("Initial full string " + stringb);
+        System.out.println("stringa is " + stringa);
+        remainderString = lastPart(stringa, stringb);
+        System.out.println("Remainder String " + remainderString);
+    }
 }
